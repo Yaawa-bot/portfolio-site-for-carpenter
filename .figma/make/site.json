@@ -1,0 +1,10 @@
+{
+  "description": "Showcase carpentry projects with a clean, professional portfolio site that highlights craftsmanship and attracts potential clients effectively.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
