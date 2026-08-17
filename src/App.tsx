@@ -37,6 +37,22 @@ function IconPin({ className = '' }: { className?: string }) {
   )
 }
 
+function IconChevronLeft({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} {...iconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.41 7.41L10.83 12l4.58 4.59L14 18l-6-6 6-6z" />
+    </svg>
+  )
+}
+
+function IconChevronRight({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} {...iconProps}>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+    </svg>
+  )
+}
+
 /* ─── hooks ─────────────────────────────────────────────────────────────── */
 
 function useInView(threshold = 0.15) {
@@ -140,21 +156,27 @@ const NAV_LINKS = ['Services', 'À propos', 'Contact']
 const SERVICES = [
   {
     num: '01',
-    img: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&h=800&fit=crop&auto=format&q=80',
-    title: 'Travaux Publics',
-    desc: 'Voirie, réseaux divers (VRD), aménagement du territoire et infrastructures. Des chantiers menés avec rigueur, du terrassement à la livraison.',
+    images: ['/IMAGE 9.jpg'],
+    title: 'Décapage & Terrassement',
+    desc: 'Nos bulldozers et engins de terrassement préparent et nettoient le terrain pour vos projets.',
   },
   {
     num: '02',
-    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&h=800&fit=crop&auto=format&q=80',
-    title: 'Bâtiment',
-    desc: 'Conception, construction générale, rénovation et travaux de finition. Nous accompagnons chaque projet, du particulier à l\'institutionnel.',
+    images: ['/IMAGE 7.jpg', '/IMAGE 11.jpg', '/IMAGE 14.jpg'],
+    title: 'Assainissement & VRD',
+    desc: 'Pose des caniveaux et réseaux d\'eau pour un assainissement durable et efficace.',
   },
   {
     num: '03',
-    img: 'https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1200&h=800&fit=crop&auto=format&q=80',
-    title: 'Topographie',
-    desc: 'Levé topographique, plan de masse, bornage et études de terrain. Une base fiable et précise pour sécuriser vos projets de construction.',
+    images: ['/IMAGE 8.jpg', '/IMAGE 13.jpg', '/IMAGE 15.jpg', '/IMAGE 16.jpg', '/IMAGE 18.jpg'],
+    title: 'Voirie & Compactage',
+    desc: 'Nivelleuse, compacteur et piste finalisée : une voirie professionnelle et durable.',
+  },
+  {
+    num: '04',
+    images: ['/IMAGE 21.jpg', '/IMAGE 22.jpg', '/IMAGE 23.jpg', '/IMAGE 24.jpg', '/IMAGE 25.jpg', '/IMAGE 26.jpg'],
+    title: 'Bâtiment & Construction',
+    desc: 'De la conception à la livraison : construction générale, rénovation et aménagement complets.',
   },
 ]
 
@@ -192,6 +214,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [carouselIndex, setCarouselIndex] = useState<Record<string, number>>({ '01': 0, '02': 0, '03': 0, '04': 0 })
 
   const parallax = useParallax()
   const progress = useScrollProgress()
@@ -309,11 +332,11 @@ export default function App() {
       </header>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen flex items-end pt-16 overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
+      <section id="hero" className="relative min-h-screen flex items-end pt-16 overflow-hidden" style={{ backgroundColor: '#354f8b' }}>
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30 will-change-transform"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&h=1000&fit=crop&auto=format)',
+            backgroundImage: 'url(/IMAGE 31.jpg)',
             transform: `translateY(${parallax * 0.3}px)`,
           }}
         />
@@ -374,7 +397,7 @@ export default function App() {
               </p>
             </div>
 
-            <StatItem label="Domaines d'activité" value={3} delay={300} />
+            <StatItem label="Domaines d'activité" value={4} delay={300} />
             <div
               className="border-t border-[#f8fafc]/10 pt-6"
               style={{ animation: 'fadeUp 0.6s ease 0.5s both' }}
@@ -428,8 +451,52 @@ export default function App() {
                   onMouseEnter={() => setHoveredCard(i)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  <div className="w-full h-44 bg-[#0f172a] overflow-hidden">
-                    <img src={s.img} alt={s.title} className="w-full h-full object-cover transform-gpu transition-transform duration-700 group-hover:scale-105" />
+                  {/* Carrousel image */}
+                  <div className="relative w-full bg-[#0f172a] overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                    <div className="relative w-full h-full">
+                      <img 
+                        src={s.images[carouselIndex[s.num]]} 
+                        alt={`${s.title} - ${carouselIndex[s.num] + 1}`} 
+                        className="w-full h-full object-cover transition-opacity duration-500"
+                      />
+                    </div>
+
+                    {/* Flèche gauche */}
+                    <button
+                      onClick={() => setCarouselIndex(prev => ({
+                        ...prev,
+                        [s.num]: prev[s.num] === 0 ? s.images.length - 1 : prev[s.num] - 1
+                      }))}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[#d97706] hover:bg-[#f59e0b] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                    >
+                      <IconChevronLeft className="w-5 h-5" />
+                    </button>
+
+                    {/* Flèche droite */}
+                    <button
+                      onClick={() => setCarouselIndex(prev => ({
+                        ...prev,
+                        [s.num]: prev[s.num] === s.images.length - 1 ? 0 : prev[s.num] + 1
+                      }))}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[#d97706] hover:bg-[#f59e0b] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                    >
+                      <IconChevronRight className="w-5 h-5" />
+                    </button>
+
+                    {/* Indicateurs (points) */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+                      {s.images.map((_, imgIdx) => (
+                        <button
+                          key={imgIdx}
+                          onClick={() => setCarouselIndex(prev => ({ ...prev, [s.num]: imgIdx }))}
+                          className={`h-2 transition-all duration-300 rounded-full cursor-pointer ${
+                            carouselIndex[s.num] === imgIdx 
+                              ? 'w-6 bg-[#f59e0b]' 
+                              : 'w-2 bg-white/50 hover:bg-white/70'
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
 
                   <div className="p-6 bg-[#0f172a] text-[#f8fafc]">
@@ -483,7 +550,7 @@ export default function App() {
                   SMBK BTP — Société Modèle Bâti Qualité — est une entreprise individuelle basée à Bondoukou, en Côte d'Ivoire. Nous intervenons sur l'ensemble du territoire pour accompagner particuliers et institutions dans leurs projets de construction et d'aménagement.
                 </p>
                 <p>
-                  Notre activité couvre trois domaines complémentaires : les travaux publics (voirie, réseaux divers, infrastructures), le bâtiment (conception, construction générale, rénovation) et la topographie (levés, plans de masse, bornage), pour offrir un accompagnement complet, de l'étude de terrain à la livraison.
+                  Notre activité couvre quatre domaines complémentaires : le décapage et terrassement, l'assainissement et VRD, la voirie et compactage, ainsi que le bâtiment et construction, pour offrir un accompagnement complet, de l'étude de terrain à la livraison.
                 </p>
                 <p>
                   Chaque projet commence par une conversation. Nous prenons le temps de comprendre vos besoins et votre terrain pour vous proposer une solution rigoureuse, durable et adaptée à votre budget.
@@ -492,7 +559,7 @@ export default function App() {
 
               <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-[#0f172a]/10">
                 {[
-                  { label: 'Domaines', val: '3 activités' },
+                  { label: 'Domaines', val: '4 activités' },
                   { label: 'Statut', val: 'Entreprise Ind.' },
                   { label: "Rayon d'action", val: 'Côte d\'Ivoire' },
                 ].map((item, i) => (
