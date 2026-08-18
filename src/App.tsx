@@ -259,7 +259,7 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-3 group">
-            <span className="font-mono-label text-[10px] tracking-[0.2em] text-[#64748b] uppercase hidden sm:block">
+            <span className="font-mono-label text-[9px] sm:text-[10px] tracking-[0.2em] text-[#64748b] uppercase">
               Société Modèle Bâti Qualité : BTP
             </span>
             <span className="w-px h-4 bg-[#64748b]/40 hidden sm:block" />
