@@ -162,19 +162,25 @@ const SERVICES = [
   },
   {
     num: '02',
-    images: ['/IMAGE 50.jpg', '/IMAGE 7.jpg', '/IMAGE 11.jpg', '/IMAGE 14.jpg', '/IMAGE 3.jpg', '/IMAGE 4.jpg'],
+    images: ['/IMAGE 50.jpg', '/IMAGE 7.jpg', '/IMAGE 11.jpg', '/IMAGE 3.jpg', '/IMAGE 4.jpg'],
     title: 'Assainissement & VRD',
     desc: 'Pose des caniveaux et réseaux d\'eau pour un assainissement durable et efficace.',
   },
   {
     num: '03',
-    images: ['/IMAGE 41.jpg', '/IMAGE 8.jpg', '/IMAGE 13.jpg', '/IMAGE 15.jpg', '/IMAGE 16.jpg', '/IMAGE 18.jpg'],
+    images: ['/IMAGE 41.jpg', '/IMAGE 8.jpg', '/IMAGE 13.jpg', '/IMAGE 16.jpg', '/IMAGE 18.jpg'],
     title: 'Voirie & Compactage',
     desc: 'Nivelleuse, compacteur et piste finalisée : une voirie professionnelle et durable.',
   },
   {
     num: '04',
-    images: ['/IMAGE 21.jpg', '/IMAGE 22.jpg', '/IMAGE 23.jpg', '/IMAGE 24.jpg', '/IMAGE 25.jpg', '/IMAGE 26.jpg'],
+    images: ['/IMAGE 60.jpg', '/IMAGE 5.jpg', '/IMAGE 14.jpg', '/IMAGE 26.jpg'],
+    title: 'Topographie',
+    desc: 'Études topographiques et levés de terrain pour une planification précise de vos projets de construction et d\'aménagement.',
+  },
+  {
+    num: '05',
+    images: ['/IMAGE 21.jpg', '/IMAGE 22.jpg', '/IMAGE 23.jpg', '/IMAGE 24.jpg', '/IMAGE 25.jpg'],
     title: 'Bâtiment & Construction',
     desc: 'De la conception à la livraison : construction générale, rénovation et aménagement complets.',
   },
@@ -214,7 +220,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [carouselIndex, setCarouselIndex] = useState<Record<string, number>>({ '01': 0, '02': 0, '03': 0, '04': 0 })
+  const [carouselIndex, setCarouselIndex] = useState<Record<string, number>>({ '01': 0, '02': 0, '03': 0, '04': 0, '05': 0 })
 
   const parallax = useParallax()
   const progress = useScrollProgress()
@@ -401,7 +407,7 @@ export default function App() {
               </p>
             </div>
 
-            <StatItem label="Domaines d'activité" value={4} delay={300} />
+            <StatItem label="Domaines d'activité" value={5} delay={300} />
             <div
               className="border-t border-[#f8fafc]/10 pt-6"
               style={{ animation: 'fadeUp 0.6s ease 0.5s both' }}
@@ -551,10 +557,10 @@ export default function App() {
               </h2>
               <div className="space-y-5 text-[#1e293b] font-light leading-relaxed">
                 <p>
-                  SMBK BTP — Société Modèle Bâti Qualité — est une entreprise individuelle basée à Bondoukou, en Côte d'Ivoire. Nous intervenons sur l'ensemble du territoire pour accompagner particuliers et institutions dans leurs projets de construction et d'aménagement.
+                  SMBK BTP — Société Modèle Bâti Qualité — est une entreprise basée à Bondoukou, en Côte d'Ivoire. Nous intervenons sur l'ensemble du territoire pour accompagner particuliers et institutions dans leurs projets de construction et d'aménagement.
                 </p>
                 <p>
-                  Notre activité couvre quatre domaines complémentaires : le décapage et terrassement, l'assainissement et VRD, la voirie et compactage, ainsi que le bâtiment et construction, pour offrir un accompagnement complet, de l'étude de terrain à la livraison.
+                  Notre activité couvre cinq domaines complémentaires : le décapage et terrassement, l'assainissement et VRD, la voirie et compactage, le bâtiment et construction ainsi que la topographie, pour offrir un accompagnement complet, de l'étude de terrain à la livraison.
                 </p>
                 <p>
                   Chaque projet commence par une conversation. Nous prenons le temps de comprendre vos besoins et votre terrain pour vous proposer une solution rigoureuse, durable et adaptée à votre budget.
@@ -563,7 +569,7 @@ export default function App() {
 
               <div className="grid grid-cols-3 gap-6 mt-12 pt-12 border-t border-[#0f172a]/10">
                 {[
-                  { label: 'Domaines', val: '4 activités' },
+                  { label: 'Domaines', val: '5 activités' },
                   { label: 'Statut', val: 'Entreprise Ind.' },
                   { label: "Rayon d'action", val: 'Côte d\'Ivoire' },
                 ].map((item, i) => (
