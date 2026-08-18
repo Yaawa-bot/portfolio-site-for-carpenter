@@ -156,19 +156,19 @@ const NAV_LINKS = ['Services', 'À propos', 'Contact']
 const SERVICES = [
   {
     num: '01',
-    images: ['/IMAGE 9.jpg'],
+    images: ['/IMAGE 9.jpg', '/IMAGE 6.jpg'],
     title: 'Décapage & Terrassement',
     desc: 'Nos bulldozers et engins de terrassement préparent et nettoient le terrain pour vos projets.',
   },
   {
     num: '02',
-    images: ['/IMAGE 7.jpg', '/IMAGE 11.jpg', '/IMAGE 14.jpg'],
+    images: ['/IMAGE 50.jpg', '/IMAGE 7.jpg', '/IMAGE 11.jpg', '/IMAGE 14.jpg', '/IMAGE 3.jpg', '/IMAGE 4.jpg'],
     title: 'Assainissement & VRD',
     desc: 'Pose des caniveaux et réseaux d\'eau pour un assainissement durable et efficace.',
   },
   {
     num: '03',
-    images: ['/IMAGE 8.jpg', '/IMAGE 13.jpg', '/IMAGE 15.jpg', '/IMAGE 16.jpg', '/IMAGE 18.jpg'],
+    images: ['/IMAGE 41.jpg', '/IMAGE 8.jpg', '/IMAGE 13.jpg', '/IMAGE 15.jpg', '/IMAGE 16.jpg', '/IMAGE 18.jpg'],
     title: 'Voirie & Compactage',
     desc: 'Nivelleuse, compacteur et piste finalisée : une voirie professionnelle et durable.',
   },
@@ -260,15 +260,15 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
           <a href="#hero" className="flex items-center gap-3 group">
             <span className="font-mono-label text-[10px] tracking-[0.2em] text-[#64748b] uppercase hidden sm:block">
-              Entreprise Individuelle
+              Société Modèle Bâti Qualité : BTP
             </span>
             <span className="w-px h-4 bg-[#64748b]/40 hidden sm:block" />
-            <span
-              className="font-display font-semibold tracking-tight transition-all duration-300"
-              style={{ fontSize: navShrunk ? '16px' : '18px' }}
-            >
-              SMBK BTP
-            </span>
+            <img
+              src="/IMAGE 40.jpg"
+              alt="SMBK BTP"
+              className="w-auto transition-all duration-300"
+              style={{ height: navShrunk ? '42px' : '48px' }}
+            />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -332,15 +332,19 @@ export default function App() {
       </header>
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen flex items-end pt-16 overflow-hidden" style={{ backgroundColor: '#354f8b' }}>
+      <section id="hero" className="relative min-h-screen flex items-end pt-16 overflow-hidden" style={{ backgroundColor: '#2b3a43' }}>
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 will-change-transform"
+          className="absolute inset-0 opacity-100 will-change-transform"
           style={{
-            backgroundImage: 'url(/IMAGE 31.jpg)',
-            transform: `translateY(${parallax * 0.3}px)`,
+            backgroundImage: 'url(/IMAGE 40.jpg)',
+            backgroundSize: '100% 100%',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            transform: `translateY(${parallax * 0.3}px) scale(1.06)`,
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/60 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,14,18,0.8)_0%,rgba(10,14,18,0.58)_30%,rgba(10,14,18,0.22)_72%,rgba(10,14,18,0.35)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.08),rgba(0,0,0,0.45))]" />
         <div
           className="absolute top-20 -right-20 w-96 h-96 rounded-full bg-[#d97706]/20 blur-3xl pointer-events-none"
           style={{ animation: 'float 8s ease-in-out infinite' }}
@@ -403,7 +407,7 @@ export default function App() {
               style={{ animation: 'fadeUp 0.6s ease 0.5s both' }}
             >
               <p className="font-mono-label text-[10px] tracking-[0.2em] text-[#64748b] uppercase mb-1">Statut</p>
-              <p className="font-display text-2xl font-light text-[#f8fafc]">Entreprise Individuelle</p>
+              <p className="font-display text-2xl font-light text-[#f8fafc]">Société Modèle Bâti Qualité : BTP</p>
             </div>
             <div
               className="border-t border-[#f8fafc]/10 pt-6"
@@ -665,9 +669,14 @@ export default function App() {
       <footer className="border-t border-[#0f172a]/10 py-10">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="font-display text-lg font-semibold">SMBK BTP</span>
+            <img
+              src="/IMAGE 40.jpg"
+              alt="SMBK BTP"
+              className="w-auto"
+              style={{ height: '56px' }}
+            />
             <span className="w-px h-4 bg-[#0f172a]/20" />
-            <span className="font-mono-label text-[9px] tracking-[0.2em] text-[#64748b] uppercase">Entreprise Individuelle</span>
+            <span className="font-mono-label text-[9px] tracking-[0.2em] text-[#64748b] uppercase">Société Modèle Bâti Qualité : BTP</span>
           </div>
           <p className="font-mono-label text-[9px] tracking-[0.15em] text-[#94a3b8] uppercase">
             © 2026 SMBK BTP — Bondoukou, Côte d'Ivoire
