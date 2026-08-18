@@ -534,11 +534,11 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-16 items-start">
           <Reveal direction="left" className="md:col-span-2">
             <div className="relative">
-              <div className="bg-[#1e293b] aspect-[3/4] overflow-hidden">
+              <div className="bg-[#1e293b] overflow-hidden" style={{ minHeight: '400px' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1541976590-713941681591?w=600&h=800&fit=crop&auto=format"
+                  src="/IMAGE 40.jpg"
                   alt="Chantier SMBK BTP"
-                  className="w-full h-full object-cover mix-blend-luminosity opacity-80 hover:opacity-100 hover:mix-blend-normal transition-all duration-700"
+                  className="w-full h-full object-contain mix-blend-luminosity opacity-80 hover:opacity-100 hover:mix-blend-normal transition-all duration-700"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-[#d97706] p-6 hidden md:block">
